@@ -1,0 +1,8 @@
+# MODULES
+/node_modules
+
+# CONFIG
+/config/.env
+
+# MISC
+/notes

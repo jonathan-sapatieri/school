@@ -1,0 +1,111 @@
+openapi: '3.0.2'
+info:
+  title: School Management API
+  description: A API to manage school classes and students.
+  #termsOfService: https://termsofservice.com
+  contact:
+    name: Jonathan Sapatieri
+    url: http://www.jonathansapatieri.com
+    email: 'contato@jonathansapatieri.com'
+  license:
+    name: General Public License 3 (GPL3)
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+  version: '1.0.0'
+
+# EXTERNAL DOCUMENTATION
+#externalDocs:
+#description: External Documentatios
+#url: https://externaldocumentation
+
+# SERVERS
+servers:
+  - url: http://locahost:3000/v1
+    description: Local Development Server
+
+# TAGS
+tags:
+  - name: Levels
+  - name: People
+  - name: Classes
+  - name: Registrations
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
+
+components:
+  # SCHEMAS
+  schemas:
+    Levels:
+      title: Levels
+      description: Represents a classes levels.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Basic
+    People:
+      title: People
+      description: Represents a people with different roles.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Jhon Winchester
+        active:
+          type: boolean
+          example: true
+        email:
+          type: string
+          example: jhon.winchester@school.com
+        role:
+          type: string
+          example: Teacher
+          enum:
+            - student
+            - teacher
+    Classes:
+      title: Classes
+      description: Represents classes of students.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        teacher:
+          $ref: '#/components/schemas/People'
+        startDate:
+          type: string
+          format: Represents a date on format yyyy-mm-dd
+          example: '2021-10-11'
+        level:
+          $ref: '#/components/schemas/Levels'
+    Registrations:
+      title: Registrations
+      description: Represents students' registrations.
+      properties:
+        id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          example: active
+          enum:
+            - active
+            - canceled
+            - completed
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/People'
+        class:
+          $ref: '#/components/schemas/Classes'
