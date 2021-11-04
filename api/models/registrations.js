@@ -32,6 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Registrations',
       tableName: 'Registrations',
       underscored: true,
+      defaultScope: {
+        attributes: {
+          exclude: ['classId', 'studentId', 'createdAt', 'updatedAt'],
+        },
+        include: ['student', 'class'],
+      },
     }
   );
   return Registrations;
