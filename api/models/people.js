@@ -27,7 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'People',
       tableName: 'People',
       underscored: true,
-      defaultScope: { attributes: { exclude: ['createdAt', 'updatedAt'] } },
+      defaultScope: {
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        where: { active: true },
+        order: [['name', 'ASC']],
+      },
     }
   );
   return People;
