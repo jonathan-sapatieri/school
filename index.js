@@ -1,6 +1,7 @@
-const env = require('./config/env');
-const app = require('./api/app');
+const env = require('./src/config');
+const App = require('./src');
 
-app.listen(env.api.port || 3000, () =>
-  console.log(`${env.type} server running on port ${env.api.port}`)
-);
+const PORT = env.api.port;
+const ENV = env.type.toLocaleUpperCase();
+
+App.listen(PORT, () => console.log(`${ENV} server running on port ${PORT}...`));

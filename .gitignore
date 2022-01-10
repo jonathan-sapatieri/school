@@ -2,7 +2,6 @@
 /node_modules
 
 # CONFIG
-/config/.env
+/src/config/.env
 
 # MISC
-/notes
